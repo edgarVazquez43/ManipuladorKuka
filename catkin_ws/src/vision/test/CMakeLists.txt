@@ -9,12 +9,14 @@ project(test)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   cv_bridge
-  opencv2
+#  opencv2
   roscpp
   rospy
   sensor_msgs
   std_msgs
 )
+find_package(OpenCV REQUIRED)
+set(OpenCV_INCLUDE_DIRS "/usr/local/include")
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)

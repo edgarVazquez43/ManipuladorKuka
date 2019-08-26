@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/pc_proyecto/ManipuladorKuka/catkin_ws/install/setup.sh

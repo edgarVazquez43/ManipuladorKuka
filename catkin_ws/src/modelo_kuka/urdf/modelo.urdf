@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<robot name="modelo_kuka">
+
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+
+  <material name="orange">
+    <color rgba="0.941 0.466 0.156 1"/>
+  </material>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.3" radius="0.18"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.15"/>
+      <material name="black"/>
+    </visual>
+  </link>
+
+  <link name="link_1">
+    <visual>
+      <geometry>
+        <box size="0.36 0.1 0.2"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.1"/>
+      <material name="orange"/>
+    </visual>
+  </link>
+
+  <joint name="base_to_link1" type="continuous">
+    <parent link="base_link"/>
+    <child link="link_1"/>
+    <limit effort="1000.0" lower="-2.705" upper="2.705" velocity="2.72"/>
+    <axis xyz="0 0 1"/>
+    <origin rpy="0 0 0" xyz="0 0 0.3"/>	
+  </joint>
+
+  <link name="link_2">
+    <visual>
+      <geometry>
+        <box size="0.2 0.1 0.6"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0.3"/>
+      <material name="orange"/>
+    </visual>
+  </link>
+
+  <joint name="link1_to_link2" type="continuous">
+    <parent link="link_1"/>
+    <child link="link_2"/>
+    <limit effort="1000.0" lower="-2.705" upper="2.705" velocity="2.72"/>
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0.18 -0.1 0.1"/>	
+  </joint>
+
+
+</robot>
+

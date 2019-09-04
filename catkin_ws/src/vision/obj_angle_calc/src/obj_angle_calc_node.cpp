@@ -45,10 +45,6 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 	float h_table;
 	
 	std::string object_name;
-	std::string object_price;
-	std::string object_calories;
-	std::string object_grasas;
-	std::string object_carbohidratos;
 	
 	cv::Mat imgBGR;
 	cv::Mat imgDepth;
@@ -85,16 +81,18 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 	centroid_coord.push_back(0.0);
 
 
-
+	// Calling a service to get the PointCloud
 	if(!cltRgbdRobot.call(srv))
 	{
 		std::cout << "Angle_Calc.-> Cannot get point cloud.... :(  " << std::endl;
 		return -1;
 	}
 
+	// This line should be replaced with a code to transform a PointClod (ROS mensaje) to -> CV::MAT(OpenCV data type) 
 	JustinaTools::PointCloud2Msg_ToCvMat(srv.response.point_cloud, imgBGR, imgDepth);
 
 
+	// Here is done a cropp over the image
 	cv::Rect myROI(xmin, ymin, W, H);
 	croppedDepth = imgDepth(myROI);
 	croppedBRG = imgBGR(myROI);
@@ -104,32 +102,32 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 
 
 	// ##### Find best fit model to point cloud
-	// Return plane with Normal = (1, 1, 1) is didn't find plane
+	// Return plane with Normal = (1, 1, 1) if didn't find plane
 
-	/****
-	     AL READY MEASURE THE TIME
-	 ***/
-	// It already measure time
-	clock_t begin = std::clock();
+	/* Best plane is a data structure that contains the model of a plane
+	   expresed by a normal vector, in addittion it contains wich point belog to plane
+	   and their respective coordinates (x, y, z)
+	 */
+        
+	// clock_t begin = std::clock();                          // It already measure time
 	bestPlane = FindPlaneRANSAC(croppedDepth, threshold, attemps );
-	clock_t end = std::clock();
-	double duration = double(end-begin) / CLOCKS_PER_SEC;
-	// myFile << " " << duration << " " << bestPlane.inliers << "\n"; 
 
+	//clock_t end = std::clock();                            // It already measure time
+	//double duration = double(end-begin) / CLOCKS_PER_SEC;  // It already measure time
 	// std::cout << "EDGAR PLANE plane" << std::endl
-	// 	  << "Duration: " << duration << std::endl
-	// 	  << "Inliers: " << bestPlane.inliers << std::endl
-	// 	  << std::endl;
+	// 	  << "Duration: " << duration << std::endl;
 
-	// /* Code for coloring the plane
+	
+	// /* Code for coloring the plane of green color
 	if(bestPlane.GetNormal() != cv::Point3f(1.0, 1.0, 1.0) )
 	{
 		for(int j = 0; j < planeBGR.rows; j++)
 			for (int i = 0; i < planeBGR.cols; i++)
 			{
-			  // Calculamos la distancia de cada uno de los puntos al plano
+			  // We calculate the distance of each one point to the plane
 			  px = croppedDepth.at<cv::Point3f>(j, i);
-			  // Camparamos si la distancia está dentro de la tolerancia
+			  // If the distance is less that a predefined threshold then
+			  // we coloring green it 
 			  if (bestPlane.DistanceToPoint(px, false) < threshold)
 			    planeBGR.at<cv::Vec3b>(j, i) = cv::Vec3b(0, 255, 0);
 
@@ -160,7 +158,9 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 	// Search the centroid of object PointCloud
 	if(objectsDepth.size() != cv::Size(50, 50) )
 	{
+	        //this is a class method to get the centroid of the object 
 		object_1.getCentroid();
+		//This is a class method to get principal axis PCA
 		object_1.getPrincipalAxis();
 
 		//This is for response
@@ -188,125 +188,19 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 		resp.recog_objects[0].principal_axis[2].y = float(object_1.principalAxis[2].y);
 		resp.recog_objects[0].principal_axis[2].z = float(object_1.principalAxis[2].z);
 		
-		dimensions = getFeatures(objectsBGR, objectsDepth); 
 
-		resp.recog_objects[0].size.x = dimensions[0];
-		resp.recog_objects[0].size.y = dimensions[1];
-		resp.recog_objects[0].size.z = dimensions[2];
-
-		resp.recog_objects[0].colors.x = dimensions[3]/255;
-		resp.recog_objects[0].colors.y = dimensions[4]/255;
-		resp.recog_objects[0].colors.z = dimensions[5]/255;
-
-		// **************************//
-		//   CODE FOR ARTIFICAL-NN   //
-		
-	        // analogVector.push_back(dimensions[0]);
-		// analogVector.push_back(dimensions[1]);
-		// analogVector.push_back(dimensions[2]);
-	        // analogVector.push_back(dimensions[3]/255);
-	        // analogVector.push_back(dimensions[4]/255);
-	        // analogVector.push_back(dimensions[5]/255);
-
-		// P = normalizingVector(analogVector);
-		// // std::cout << "Caracteristicas del objeto:    " << std::endl;
-		// // std::cout << "	Dimensiones: " << std::endl;
-		// // std::cout << "		x:  " << object_1.dimensions[0] << "   " << P[0] << std::endl;
-		// // std::cout << "		y:  " << object_1.dimensions[1] << "   " << P[1] << std::endl;
-		// // std::cout << "		z:  " << object_1.dimensions[2] << "   " << P[2] << std::endl << std::endl;  
-		// // std::cout << "	Color: " << std::endl;
-		// // std::cout << "		Red:  "   << object_1.colors[0] << "   " << P[3] << std::endl;
-		// // std::cout << "		Green:  " << object_1.colors[1] << "   " << P[4] << std::endl;
-		// // std::cout << "		Blue:  "  << object_1.colors[2] << "   " << P[5] << std::endl; 
-		
-		// Tout = nn_calculate(P);
-
-		// std::cout << "--------------------------------------" << std::endl;
-
-		// if(Tout[0] == 0 && Tout[1] == 0 && Tout[2] == 0)
-		// {
-		// 	object_name = "Coca-cola";
-		// 	object_price = "$ 12.00";
-		// 	object_calories = "151 [kcal]";
-		// 	object_grasas = "0.0 [g]";
-		// 	object_carbohidratos = "38.9 [g]";
-		// }
-		// else if(Tout[0] == 0 && Tout[1] == 1 && Tout[2] == 1)
-		// {
-		// 	object_name = "Jugo";
-		// 	object_price = "$ 18.00";
-		// 	object_calories = "58 [kcal]";
-		// 	object_grasas = "0.0 [g]";
-		// 	object_carbohidratos = "15.0 [g]";
-		// }
-		// else if(Tout[0] == 0 && Tout[1] == 0 && Tout[2] == 1)
-		// {
-		// 	object_name = "Milk";
-		// 	object_price = "$ 8.00";
-		// 	object_calories = "139.5 [kcal]";
-		// 	object_grasas = "4.7 [g]";
-		// 	object_carbohidratos = "22.0 [g]";
-		// }
-		// else if(Tout[0] == 0 && Tout[1] == 1 && Tout[2] == 0)
-		// {
-		// 	object_name = "Desodorante 150 ml";
-		// 	object_price = "$ 24.00";
-		// 	object_calories = "Butano";
-		// 	object_grasas = "Alcohol  - fragancia";
-		// 	object_carbohidratos = "Agua";
-		// }
-
-		// cv::putText(croppedBRG, object_name, 
-		// 	cv::Point(30,30),
-		// 	cv::FONT_HERSHEY_COMPLEX_SMALL,
-		// 	1.0,
-		// 	cv::Scalar(200, 20, 0),
-		// 	1,
-		// 	CV_AA);
-
-		// cv::putText(croppedBRG, object_price, 
-		// 	cv::Point(30,60),
-		// 	cv::FONT_HERSHEY_COMPLEX_SMALL,
-		// 	1.0,
-		// 	cv::Scalar(200, 20, 0),
-		// 	1,
-		// 	CV_AA);
-		
-		// cv::putText(croppedBRG, object_calories, 
-		// 	cv::Point(30,90),
-		// 	cv::FONT_HERSHEY_COMPLEX_SMALL,
-		// 	1.0,
-		// 	cv::Scalar(10, 30, 150),
-		// 	1,
-		// 	CV_AA);
-
-		// cv::putText(croppedBRG, object_grasas, 
-		// 	cv::Point(30,120),
-		// 	cv::FONT_HERSHEY_COMPLEX_SMALL,
-		// 	1.0,
-		// 	cv::Scalar(10, 30, 150),
-		// 	1,
-		// 	CV_AA);
-		
-		// cv::putText(croppedBRG, object_carbohidratos, 
-		// 	cv::Point(30,150),
-		// 	cv::FONT_HERSHEY_COMPLEX_SMALL,
-		// 	1.0,
-		// 	cv::Scalar(10, 30, 150),
-		// 	1,
-		// 	CV_AA);
-
-
-		cv::rectangle(imgBGR, cv::Point(xmin, ymin), cv::Point(xmin+W, ymin+H), cv::Scalar(0, 255, 0), 1, 8, 0 );
-		cv::rectangle(imgDepth, cv::Point(xmin, ymin), cv::Point(xmin+W, ymin+H), cv::Scalar(50, 255, 0), 2, 8, 0 );
+		cv::rectangle(imgBGR, cv::Point(xmin, ymin),
+			      cv::Point(xmin+W, ymin+H), cv::Scalar(0, 255, 0), 1, 8, 0 );
+		cv::rectangle(imgDepth, cv::Point(xmin, ymin),
+			      cv::Point(xmin+W, ymin+H), cv::Scalar(50, 255, 0), 2, 8, 0 );
 		cv::rectangle(croppedBRG, object_1.ROI, cv::Scalar(150, 50, 0), 2, 8, 0);
 
 		
 		cv::imshow("Original RGB", imgBGR);
-		// cv::imshow("OBJECT RECONIZING", croppedBRG);
-		// cv::imshow("plane", planeBGR);
+		cv::imshow("OBJECT RECONIZING", croppedBRG);
+		cv::imshow("plane", planeBGR);
 		cv::imshow("objects", objectsBGR);
-		// cv::imshow("Objects Point Cloud", objectsDepth);
+		cv::imshow("Objects Point Cloud", objectsDepth);
 
 
 	}

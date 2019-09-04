@@ -1,6 +1,9 @@
 #pragma once
 #include <cmath>
 #include <stdexcept>
+#include <Eigen/Core>
+#include <Eigen/Geometry>
+#include <Eigen/Eigenvalues>
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
 
@@ -142,17 +145,24 @@ bool segmentedObject::getPrincipalAxis()
 
   
   // Calculate eigenvalues and eigenvectors of covariance matrix
+  // Eigen::SelfAdjointEigenSolver<Eigen::MatrixXf> eig(cov_matrix);
   Eigen::SelfAdjointEigenSolver<Eigen::MatrixXf> eig(cov_matrix);
-
+  
   //std::cout << "    eigenvectors: " << std::endl << eig.eigenvectors().col(0) <<
   //			std::endl << eig.eigenvectors().col(1) << std::endl <<
   //			std::endl << eig.eigenvectors().col(2) << std::endl;
 
   //std::cout << "    eigenvalues: " << std::endl << eig.eigenvalues().transpose() << std::endl;
 
-  axis_1 = cv::Point3f(eig.eigenvectors()(0,2), eig.eigenvectors()(1,2), eig.eigenvectors()(2,2));
-  axis_2 = cv::Point3f(eig.eigenvectors()(0,1), eig.eigenvectors()(1,1), eig.eigenvectors()(2,1));
-  axis_3 = cv::Point3f(eig.eigenvectors()(0,0), eig.eigenvectors()(1,0), eig.eigenvectors()(2,0));
+  axis_1 = cv::Point3f(eig.eigenvectors()(0,2),
+		       eig.eigenvectors()(1,2),
+		       eig.eigenvectors()(2,2));
+  axis_2 = cv::Point3f(eig.eigenvectors()(0,1),
+		       eig.eigenvectors()(1,1),
+		       eig.eigenvectors()(2,1));
+  axis_3 = cv::Point3f(eig.eigenvectors()(0,0),
+		       eig.eigenvectors()(1,0),
+		       eig.eigenvectors()(2,0));
 
   //Multiply axis for the corresponding standart deviation
   this->standartDeviations.push_back( sqrt(eig.eigenvalues()(0))*2 );

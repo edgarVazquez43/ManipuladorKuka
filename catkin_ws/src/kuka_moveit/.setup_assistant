@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: assembly_kuka_simp
+    relative_path: urdf/kuka_modelo.urdf
+    xacro_args: ""
+  SRDF:
+    relative_path: config/assembly_kuka_simp.srdf
+  CONFIG:
+    author_name: Diego Nava
+    author_email: xdiegonarsola@gmail.com
+    generated_timestamp: 1568830993

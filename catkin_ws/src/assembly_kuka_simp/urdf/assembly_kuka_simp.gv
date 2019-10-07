@@ -1,0 +1,26 @@
+digraph G {
+node [shape=box];
+"world" [label="world"];
+"base_link" [label="base_link"];
+"link_1" [label="link_1"];
+"link_2" [label="link_2"];
+"link_3" [label="link_3"];
+"link_4" [label="link_4"];
+"link_5" [label="link_5"];
+"link_6" [label="link_6"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"world" -> "world_base" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"world_base" -> "base_link"
+"base_link" -> "base_to_link1" [label="xyz: 0 0 0.2255 \nrpy: 0 -0 1.5686"]
+"base_to_link1" -> "link_1"
+"link_1" -> "link1_to_link2" [label="xyz: 0.18106 -0.002 0.178 \nrpy: 0 0.71824 0"]
+"link1_to_link2" -> "link_2"
+"link_2" -> "link2_to_link3" [label="xyz: 0.0011745 0.002 0.59705 \nrpy: 0 -0.58172 0"]
+"link2_to_link3" -> "link_3"
+"link_3" -> "link3_to_link4" [label="xyz: 0.237 0 0.17 \nrpy: -0.77711 0 0"]
+"link3_to_link4" -> "link_4"
+"link_4" -> "link4_to_link5" [label="xyz: 0.383 0.005 0 \nrpy: 0 -0 0"]
+"link4_to_link5" -> "link_5"
+"link_5" -> "link5_to_link6" [label="xyz: 0.193 -0.003 0 \nrpy: 1.3396 -0 0"]
+"link5_to_link6" -> "link_6"
+}

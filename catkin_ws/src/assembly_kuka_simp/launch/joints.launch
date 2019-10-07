@@ -1,0 +1,48 @@
+<launch>
+  <arg name="model" default="$(find assembly_kuka_simp)/urdf/kuka_modelo.urdf"/>
+  <arg name="rvizconfig" default="$(find assembly_kuka_simp)/rviz/urdf.rviz" />
+
+  <include file="$(find assembly_kuka_simp)/launch/gazebo.launch">
+    <arg name="model" value="$(arg model)" />
+  </include>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" />
+
+  <rosparam command="load"
+            file="$(find assembly_kuka_simp)/config/joints.yaml"
+            ns="kuka_joint_state_controller" />
+  <rosparam command="load"
+            file="$(find assembly_kuka_simp)/config/linkb1.yaml"
+            ns="kuka_linkb1_controller" />
+  <rosparam command="load"
+            file="$(find assembly_kuka_simp)/config/link12.yaml"
+            ns="kuka_link12_controller" />
+  <rosparam command="load"
+            file="$(find assembly_kuka_simp)/config/link23.yaml"
+            ns="kuka_link23_controller" />
+  <rosparam command="load"
+            file="$(find assembly_kuka_simp)/config/link34.yaml"
+            ns="kuka_link34_controller" />
+  <rosparam command="load"
+            file="$(find assembly_kuka_simp)/config/link45.yaml"
+            ns="kuka_link45_controller" />
+  <rosparam command="load"
+            file="$(find assembly_kuka_simp)/config/link56.yaml"
+            ns="kuka_link56_controller" />
+  <rosparam command="load"
+            file="$(find assembly_kuka_simp)/config/position.yaml"
+            ns="kuka_position_controller" />
+
+  <node name="kuka_controller_spawner" pkg="controller_manager" type="spawner"
+    args="kuka_joint_state_controller
+	  kuka_linkb1_controller
+	  kuka_link12_controller
+	  kuka_link23_controller
+	  kuka_link34_controller
+	  kuka_link45_controller
+	  kuka_link56_controller
+	  kuka_position_controller	  	
+          --shutdown-timeout 3"/>
+
+
+</launch>

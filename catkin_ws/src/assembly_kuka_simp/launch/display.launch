@@ -1,0 +1,20 @@
+<launch>
+
+  <arg name="model" default="$(find assembly_kuka_simp)/urdf/assembly_kuka_simp.urdf"/>
+  <arg name="gui" default="true" />
+  <arg name="rvizconfig" default="$(find assembly_kuka_simp)/rviz/urdf.rviz" />
+
+  <!-- upload urdf -->
+  <param name="robot_description" textfile="$(find assembly_kuka_simp)/urdf/assembly_kuka_simp.urdf" />
+  
+  <!-- node robot state publisher -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  
+  <!-- node joint state publisher -->  
+  <param name="use_gui" value="$(arg gui)" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+  <!-- node rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+</launch>

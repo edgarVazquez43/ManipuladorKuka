@@ -1,0 +1,36 @@
+# The joint state controller handles publishing transforms for any moving joints
+type: "position_controllers/JointTrajectoryController"
+joints:
+        - base_to_link1
+        - link1_to_link2
+        - link2_to_link3
+        - link3_to_link4
+        - link4_to_link5
+        - link5_to_link6
+gains:
+  base_to_link1:
+    p: 10
+    i: 1 
+    d: 10
+  link1_to_link2:
+    p: 10
+    i: 1 
+    d: 10
+  link2_to_link3:
+    p: 10
+    i: 1 
+    d: 10
+  link3_to_link4:
+    p: 10
+    i: 1 
+    d: 10
+  link4_to_link5:
+    p: 10
+    i: 1 
+    d: 10
+  link5_to_link6:
+    p: 10
+    i: 1 
+    d: 10
+
+

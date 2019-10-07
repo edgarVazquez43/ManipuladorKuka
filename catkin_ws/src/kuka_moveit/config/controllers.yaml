@@ -1,0 +1,13 @@
+controller_list:
+ - name: kuka_arm_controller
+   action_ns: follow_joint_trajectory
+   type: FollowJointTrajectory
+   default: true
+   joints:
+     - base_to_link1
+     - link1_to_2link
+     - link2_to_3link
+     - link3_to_4link
+     - link4_to_5link
+     - link5_to_6link
+     

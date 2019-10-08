@@ -1,0 +1,5 @@
+urdf_tutorial
+/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/urdf_tutorial/cmake.lock /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/./cmake.lock
+/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/urdf_tutorial/lib/pkgconfig/urdf_tutorial.pc /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/pkgconfig/urdf_tutorial.pc
+/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/urdf_tutorial/share/urdf_tutorial/cmake/urdf_tutorialConfig-version.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/urdf_tutorial/cmake/urdf_tutorialConfig-version.cmake
+/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/urdf_tutorial/share/urdf_tutorial/cmake/urdf_tutorialConfig.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/urdf_tutorial/cmake/urdf_tutorialConfig.cmake

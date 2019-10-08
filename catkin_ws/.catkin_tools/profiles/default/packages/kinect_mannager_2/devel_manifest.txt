@@ -1,0 +1,6 @@
+vision/kinect_mannager_2
+/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect_mannager_2/cmake.lock /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/./cmake.lock
+/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect_mannager_2/lib/kinect_mannager_2/kinect_mannager_2_node /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/kinect_mannager_2/kinect_mannager_2_node
+/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect_mannager_2/lib/pkgconfig/kinect_mannager_2.pc /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/pkgconfig/kinect_mannager_2.pc
+/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect_mannager_2/share/kinect_mannager_2/cmake/kinect_mannager_2Config.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/kinect_mannager_2/cmake/kinect_mannager_2Config.cmake
+/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect_mannager_2/share/kinect_mannager_2/cmake/kinect_mannager_2Config-version.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/kinect_mannager_2/cmake/kinect_mannager_2Config-version.cmake

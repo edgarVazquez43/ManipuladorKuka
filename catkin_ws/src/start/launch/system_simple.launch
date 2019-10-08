@@ -1,0 +1,19 @@
+<launch>
+  <param name="robot_description" command="cat $(find knowledge)/hardware/manipulator.xml" />
+  <!-- <param name="robot_description" command="cat $(find knowledge)/hardware/manipulatorsMoveIt.xml" / -->>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+  
+  <group ns="hardware">
+    <!-- <node name="kinect_man" pkg="kinect_man" type="kinect_man_node" output="screen"/> -->
+  </group>
+
+  <group ns="hri">
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find knowledge)/hri/rviz_config.rviz"/>
+  </group>
+
+  
+  <group ns="vision">
+    <node name="obj_angle_calc" pkg="obj_angle_calc" type="obj_angle_calc_node" output="screen"/>
+  </group>
+    
+</launch>

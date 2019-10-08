@@ -1,25 +1,27 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(obj_angle_calc)
+project(kinect_mannager_2)
+
+## Compile as C++11, supported in ROS Kinetic and newer
+# add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  hardware_tools
-  #point_cloud_manager
-  vision_msgs
-  roscpp
   rospy
-  sensor_msgs
+  roscpp
+  pcl_ros
   std_msgs
+  sensor_msgs
+  geometry_msgs
+  hardware_tools
   tf
-  cmake_modules
+  tf_conversions
 )
 
 ## System dependencies are found with CMake's conventions
-find_package(OpenCV REQUIRED)
+# find_package(Boost REQUIRED COMPONENTS system)
 
-find_package(Eigen REQUIRED)
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -74,7 +76,7 @@ find_package(Eigen REQUIRED)
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   sensor_msgs#   std_msgs
+#   geometry_msgs#   std_msgs
 # )
 
 ################################################
@@ -102,16 +104,15 @@ find_package(Eigen REQUIRED)
 ###################################
 ## The catkin_package macro generates cmake config files for your package
 ## Declare things to be passed to dependent projects
-## INCLUDE_DIRS: uncomment this if you package contains header files
+## INCLUDE_DIRS: uncomment this if your package contains header files
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES obj_angle_calc
-#  CATKIN_DEPENDS justina_tools point_cloud_manager roscpp rospy sensor_msgs std_msgs tf
+#  LIBRARIES xtion
+#  CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs
 #  DEPENDS system_lib
-  DEPENDS Eigen
 )
 
 ###########
@@ -120,38 +121,44 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-# include_directories(include)
 include_directories(
+# include
   ${catkin_INCLUDE_DIRS}
-  ${OpenCV_INCLUDE_DIRS}
-  ${Eigen_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
-# add_library(obj_angle_calc
-#   src/${PROJECT_NAME}/obj_angle_calc.cpp
+# add_library(${PROJECT_NAME}
+#   src/${PROJECT_NAME}/xtion.cpp
 # )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
-# add_dependencies(obj_angle_calc ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
-add_executable(obj_angle_calc_node src/obj_angle_calc_node.cpp)
+## With catkin_make all packages are built within a single CMake context
+## The recommended prefix ensures that target names across packages don't collide
+add_executable(kinect_mannager_2_node
+  src/kinect_mannager_2_node.cpp)
+
+
+## Rename C++ executable without prefix
+## The above recommended prefix causes long target names, the following renames the
+## target back to the shorter version for ease of user use
+## e.g. "rosrun someones_pkg node" instead of "rosrun someones_pkg someones_pkg_node"
+# set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX "")
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-add_dependencies(obj_angle_calc_node
+add_dependencies(kinect_mannager_2_node
   ${${PROJECT_NAME}_EXPORTED_TARGETS}
-  ${catkin_EXPORTED_TARGETS}
-)
+  ${catkin_EXPORTED_TARGETS})
+
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(obj_angle_calc_node
+target_link_libraries(kinect_mannager_2_node
   ${catkin_LIBRARIES}
-  ${OpenCV_LIBRARIES}
-  ${Eigen_LIBRARIES}
 )
 
 #############
@@ -169,7 +176,7 @@ target_link_libraries(obj_angle_calc_node
 # )
 
 ## Mark executables and/or libraries for installation
-# install(TARGETS obj_angle_calc obj_angle_calc_node
+# install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
@@ -194,7 +201,7 @@ target_link_libraries(obj_angle_calc_node
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_obj_angle_calc.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_xtion.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

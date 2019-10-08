@@ -5,7 +5,7 @@
 #include <boost/thread/thread.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <visualization_msgs/Marker.h>
-//#include "justina_tools/JustinaTools.h"
+#include "hardware_tools/VisionTools.h"
 #include "ros/ros.h"
 
 #include "nn.hpp"
@@ -18,7 +18,8 @@
 //std::ofstream myFile;
 
 ros::ServiceClient cltRgbdRobot;
-//point_cloud_manager::GetRgbd srv;
+
+point_cloud_manager::GetRgbd srv;
 
 bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 		       vision_msgs::DetectObjects::Response &resp)
@@ -89,7 +90,7 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 	// }
 
 	// This line should be replaced with a code to transform a PointClod (ROS mensaje) to -> CV::MAT(OpenCV data type) 
-	// JustinaTools::PointCloud2Msg_ToCvMat(srv.response.point_cloud, imgBGR, imgDepth);
+	VisionTools::PointCloud2Msg_ToCvMat(srv.response.point_cloud, imgBGR, imgDepth);
 
 
 	// Here is done a cropp over the image
@@ -225,7 +226,7 @@ int main(int argc, char** argv)
 
        
 	srvPCAobject = n.advertiseService("/vision/detect_object/PCA_calculator", callbackPCAobject);
-	// cltRgbdRobot = n.serviceClient<point_cloud_manager::GetRgbd>("/hardware/point_cloud_man/get_rgbd_wrt_robot");
+	cltRgbdRobot = n.serviceClient<point_cloud_manager::GetRgbd>("/hardware/kinect/get_rgbd");
 
 
 	ros::Rate loop(10);

@@ -1,8 +1,0 @@
-tests/object_features_test
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/object_features_test/cmake.lock /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/./cmake.lock
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/object_features_test/lib/object_features_test/angle_stimation /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/object_features_test/angle_stimation
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/object_features_test/lib/object_features_test/obj_features_test /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/object_features_test/obj_features_test
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/object_features_test/lib/object_features_test/variance_calc /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/object_features_test/variance_calc
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/object_features_test/lib/pkgconfig/object_features_test.pc /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/pkgconfig/object_features_test.pc
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/object_features_test/share/object_features_test/cmake/object_features_testConfig.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/object_features_test/cmake/object_features_testConfig.cmake
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/object_features_test/share/object_features_test/cmake/object_features_testConfig-version.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/object_features_test/cmake/object_features_testConfig-version.cmake

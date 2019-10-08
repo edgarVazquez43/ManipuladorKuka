@@ -1,7 +1,0 @@
-iai_kinect2/iai_kinect2/kinect2_registration
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect2_registration/cmake.lock /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/./cmake.lock
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect2_registration/lib/libkinect2_registration.so /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/libkinect2_registration.so
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect2_registration/lib/pkgconfig/kinect2_registration.pc /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/pkgconfig/kinect2_registration.pc
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect2_registration/share/kinect2_registration/cmake/kinect2_registrationConfig.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/kinect2_registration/cmake/kinect2_registrationConfig.cmake
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect2_registration/share/kinect2_registration/cmake/kinect2_registrationConfig-version.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/kinect2_registration/cmake/kinect2_registrationConfig-version.cmake
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect2_registration/share/kinect2_registration/cmake/kinect2_registration.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/kinect2_registration/cmake/kinect2_registration.cmake

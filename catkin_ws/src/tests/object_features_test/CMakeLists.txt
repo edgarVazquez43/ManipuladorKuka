@@ -9,36 +9,10 @@ project(object_features_test)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   tf
-  hardware_tools
+  vision_msgs
   #justina_tools
   roscpp
   rospy
-  )
-
-catkin_package(
-  INCLUDE_DIRS include
-  LIBRARIES hardware_tools
-  CATKIN_DEPENDS
-  tf
-  geometry_msgs
-  #hri_msgs
-  #manip_msgs
-  #navig_msgs
-  roscpp
-  rospy
-  sensor_msgs
-  std_msgs
-  vision_msgs
-  pcl_conversions
-  #knowledge_msgs
-  std_srvs
-#  DEPENDS system_lib
-)
-
-include_directories(
-  include
-  ${catkin_INCLUDE_DIRS}
-  ${PCL_INCLUDE_DIRS}
 )
 
 ## System dependencies are found with CMake's conventions

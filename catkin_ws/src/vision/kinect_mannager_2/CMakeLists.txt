@@ -17,22 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
   hardware_tools
   tf
   tf_conversions
-  point_cloud_manager
 )
-
-
-find_package(OpenCV 3 REQUIRED)
-find_package(PCL 1.2 REQUIRED)
-#set(CMAKE_PREFIX_PATH "/usr/local/")
-#set(OpenCV_LIB_DIR "/usr/local/lib")
-#set(OpenCV_INCLUDE_DIRS "/usr/local/include")
-#message("Includes: " ${OpenCV_INCLUDE_DIRS})
-message("Veersion OpenCV" ${OpenCV_VERSION})
-#set(OpenCV_DIR "/usr/local/lib")
-message("Libs dir" ${OpeCV_LINK_DIR})
-message("Libs: " ${OpenCV_LIBS})
-message("OpenCV_LIB_COMPONENTS:" ${OpenCV_LIB_COMPONENTS})
-message("OpenCV_CONFIG_PATH" ${OpenCV_CONFIG_PATH})
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -137,9 +122,8 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
+# include
   ${catkin_INCLUDE_DIRS}
-  ${OpenCV_INCLUDE_DIRS}
-  ${PCL_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -175,8 +159,6 @@ add_dependencies(kinect_mannager_2_node
 ## Specify libraries to link a library or executable target against
 target_link_libraries(kinect_mannager_2_node
   ${catkin_LIBRARIES}
-  ${OpenCV_LIBS}
-  ${PCL_LIBRARIES}
 )
 
 #############

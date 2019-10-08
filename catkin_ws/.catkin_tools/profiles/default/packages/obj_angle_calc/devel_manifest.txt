@@ -1,6 +1,0 @@
-vision/obj_angle_calc
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/obj_angle_calc/cmake.lock /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/./cmake.lock
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/obj_angle_calc/lib/obj_angle_calc/obj_angle_calc_node /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/obj_angle_calc/obj_angle_calc_node
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/obj_angle_calc/lib/pkgconfig/obj_angle_calc.pc /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/pkgconfig/obj_angle_calc.pc
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/obj_angle_calc/share/obj_angle_calc/cmake/obj_angle_calcConfig.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/obj_angle_calc/cmake/obj_angle_calcConfig.cmake
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/obj_angle_calc/share/obj_angle_calc/cmake/obj_angle_calcConfig-version.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/obj_angle_calc/cmake/obj_angle_calcConfig-version.cmake

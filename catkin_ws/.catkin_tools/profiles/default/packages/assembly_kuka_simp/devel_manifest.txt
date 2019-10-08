@@ -1,5 +1,0 @@
-assembly_kuka_simp
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/assembly_kuka_simp/cmake.lock /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/./cmake.lock
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/assembly_kuka_simp/lib/pkgconfig/assembly_kuka_simp.pc /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/pkgconfig/assembly_kuka_simp.pc
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/assembly_kuka_simp/share/assembly_kuka_simp/cmake/assembly_kuka_simpConfig.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/assembly_kuka_simp/cmake/assembly_kuka_simpConfig.cmake
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/assembly_kuka_simp/share/assembly_kuka_simp/cmake/assembly_kuka_simpConfig-version.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/assembly_kuka_simp/cmake/assembly_kuka_simpConfig-version.cmake

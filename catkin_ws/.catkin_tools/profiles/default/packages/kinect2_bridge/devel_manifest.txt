@@ -1,7 +1,0 @@
-iai_kinect2/iai_kinect2/kinect2_bridge
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect2_bridge/cmake.lock /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/./cmake.lock
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect2_bridge/lib/libkinect2_bridge_nodelet.so /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/libkinect2_bridge_nodelet.so
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect2_bridge/lib/pkgconfig/kinect2_bridge.pc /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/pkgconfig/kinect2_bridge.pc
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect2_bridge/lib/kinect2_bridge/kinect2_bridge /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/kinect2_bridge/kinect2_bridge
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect2_bridge/share/kinect2_bridge/cmake/kinect2_bridgeConfig.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/kinect2_bridge/cmake/kinect2_bridgeConfig.cmake
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/kinect2_bridge/share/kinect2_bridge/cmake/kinect2_bridgeConfig-version.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/kinect2_bridge/cmake/kinect2_bridgeConfig-version.cmake

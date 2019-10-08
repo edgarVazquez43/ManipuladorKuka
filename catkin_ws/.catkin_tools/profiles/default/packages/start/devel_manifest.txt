@@ -1,5 +1,0 @@
-start
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/start/cmake.lock /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/./cmake.lock
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/start/lib/pkgconfig/start.pc /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/pkgconfig/start.pc
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/start/share/start/cmake/startConfig.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/start/cmake/startConfig.cmake
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/start/share/start/cmake/startConfig-version.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/start/cmake/startConfig-version.cmake

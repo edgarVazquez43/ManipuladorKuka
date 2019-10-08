@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package >
+<package format="2">
   <name>pca_object_test</name>
   <version>0.0.0</version>
   <description>The pca_object_test package</description>
@@ -49,41 +49,15 @@
   <!-- Use doc_depend for packages you need only for building documentation: -->
   <!--   <doc_depend>doxygen</doc_depend> -->
   <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>geometry_msgs</build_depend>
-  <!-- <build_depend>hri_msgs</build_depend> -->
-  <!-- <build_depend>manip_msgs</build_depend> -->
-  <!-- <build_depend>navig_msgs</build_depend> -->
   <build_depend>roscpp</build_depend>
   <build_depend>rospy</build_depend>
-  <build_depend>roslib</build_depend>
-  <build_depend>sensor_msgs</build_depend>
-  <build_depend>std_msgs</build_depend>
-  <build_depend>vision_msgs</build_depend>
-  <build_depend>point_cloud_manager</build_depend>
-  <build_depend>nav_msgs</build_depend>
-  <build_depend>tf</build_depend>
-  <build_depend>pcl_conversions</build_depend>
-  <!-- <build_depend>knowledge_msgs</build_depend> -->
-  <build_depend>std_srvs</build_depend>
-  <build_depend>hardware_tools</build_depend>
-
-  <run_depend>geometry_msgs</run_depend>
-  <!-- <run_depend>hri_msgs</run_depend> -->
-  <!-- <run_depend>manip_msgs</run_depend> -->
-  <!-- <run_depend>navig_msgs</run_depend> -->
-  <run_depend>roscpp</run_depend>
-  <run_depend>rospy</run_depend>
-  <run_depend>roslib</run_depend>
-  <run_depend>sensor_msgs</run_depend>
-  <run_depend>std_msgs</run_depend>
-  <run_depend>vision_msgs</run_depend>
-  <run_depend>point_cloud_manager</run_depend>
-  <run_depend>nav_msgs</run_depend>
-  <run_depend>tf</run_depend>
-  <run_depend>pcl_conversions</run_depend>
-  <!-- <run_depend>knowledge_msgs</run_depend> -->
-  <run_depend>std_srvs</run_depend>
-  <run_depend>hardware_tools</run_depend>
+  <build_depend>justina_tools</build_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>justina_tools</build_export_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>justina_tools</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

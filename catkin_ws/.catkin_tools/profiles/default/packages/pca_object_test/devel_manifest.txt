@@ -1,6 +1,0 @@
-tests/pca_objec_test
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/pca_object_test/cmake.lock /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/./cmake.lock
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/pca_object_test/lib/pca_object_test/pca_object /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/pca_object_test/pca_object
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/pca_object_test/lib/pkgconfig/pca_object_test.pc /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/lib/pkgconfig/pca_object_test.pc
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/pca_object_test/share/pca_object_test/cmake/pca_object_testConfig-version.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/pca_object_test/cmake/pca_object_testConfig-version.cmake
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/.private/pca_object_test/share/pca_object_test/cmake/pca_object_testConfig.cmake /home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/share/pca_object_test/cmake/pca_object_testConfig.cmake

@@ -10,10 +10,36 @@ project(pca_object_test)
 find_package(catkin REQUIRED COMPONENTS
   tf
   vision_msgs
-  #justina_tools
+  hardware_tools
   roscpp
   rospy
 )
+
+catkin_package(
+  INCLUDE_DIRS include
+  LIBRARIES hardware_tools
+  CATKIN_DEPENDS
+  # hri_msgs
+  # manip_msgs
+  # navig_msgs
+  # knowledge_msgs
+  geometry_msgs
+  roscpp
+  rospy
+  sensor_msgs
+  std_msgs
+  vision_msgs
+  pcl_conversions
+  std_srvs
+#  DEPENDS system_lib
+)
+
+include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
+  ${PCL_INCLUDE_DIRS}
+)
+
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)

@@ -8,10 +8,10 @@ add_compile_options(-std=c++11)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  #hri_msgs
+  #manip_msgs
+  #navig_msgs
   geometry_msgs
-  hri_msgs
-  manip_msgs
-  navig_msgs
   roscpp
   rospy
   roslib
@@ -19,12 +19,9 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   vision_msgs
   point_cloud_manager
-  nav_msgs
   tf
   tf_conversions
   pcl_conversions
-  sound_play
-  knowledge_msgs
   std_srvs
   message_generation
 )
@@ -40,7 +37,15 @@ generate_messages(
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES hardware_tools
-  CATKIN_DEPENDS geometry_msgs hri_msgs manip_msgs navig_msgs roscpp rospy sensor_msgs std_msgs vision_msgs pcl_conversions knowledge_msgs std_srvs
+  CATKIN_DEPENDS
+  geometry_msgs
+  roscpp
+  rospy
+  sensor_msgs
+  std_msgs
+  vision_msgs
+  pcl_conversions
+  std_srvs
 #  DEPENDS system_lib
 )
 

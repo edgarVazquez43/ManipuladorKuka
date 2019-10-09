@@ -6,7 +6,7 @@ project(obj_angle_calc)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   hardware_tools
-  #point_cloud_manager
+  point_cloud_manager
   vision_msgs
   roscpp
   rospy

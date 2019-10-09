@@ -15,8 +15,16 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   geometry_msgs
   hardware_tools
+  point_cloud_manager
   tf
   tf_conversions
+  )
+
+find_package(OpenCV REQUIRED)
+
+include_directories(
+  ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
 )
 
 ## System dependencies are found with CMake's conventions
@@ -159,7 +167,9 @@ add_dependencies(kinect_mannager_2_node
 ## Specify libraries to link a library or executable target against
 target_link_libraries(kinect_mannager_2_node
   ${catkin_LIBRARIES}
-)
+  ${OpenCV_LIBRARIES}
+  )
+
 
 #############
 ## Install ##

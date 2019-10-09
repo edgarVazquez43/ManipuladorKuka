@@ -1,1 +1,0 @@
-/home/pc_proyecto/ManipuladorKuka/catkin_ws/devel/./cmake.lock 2

@@ -26,7 +26,7 @@ int main(int argc, char** argv)
         if(!cltDetectObjectsPCA.call(detectObj_msg))
         {
             std::cout << std::endl << "ERROOOOOR calling object segmentation Service" << std::endl << std::endl;
-            return false;
+            //return false;
         }
 	
         ros::spinOnce();

@@ -17,7 +17,7 @@
 
 //std::ofstream myFile;
 
-ros::ServiceClient cltRgbdRobot;
+ros::ServiceClient cltRgbdKinect;
 
 point_cloud_manager::GetRgbd srv;
 
@@ -57,12 +57,13 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 
 	cv::Vec4f planeComp;
 	cv::Point3f px;
+	cv::Point3f normal_plane;
 
 	plane3D bestPlane;
 
 	// *** Parametros de RANSAC *** //
-	attemps = 250;		// Numero de iteraciones para RANSAC
-	threshold = 0.02;	// Distancia al plano en metros
+	attemps = 150;		// Numero de iteraciones para RANSAC
+	threshold = 0.01;	// Distancia al plano en metros
 
 	x_obj = 0.0;
 	y_obj = 0.0;
@@ -83,11 +84,11 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 
 
 	// Calling a service to get the PointCloud
-	// if(!cltRgbdRobot.call(srv))
-	// {
-	// 	std::cout << "Angle_Calc.-> Cannot get point cloud.... :(  " << std::endl;
-	// 	return -1;
-	// }
+	if(!cltRgbdKinect.call(srv))
+	{
+		std::cout << "Angle_Calc.-> Cannot get point cloud.... :(  " << std::endl;
+		return -1;
+	}
 
 	// This line should be replaced with a code to transform a PointClod (ROS mensaje) to -> CV::MAT(OpenCV data type) 
 	VisionTools::PointCloud2Msg_ToCvMat(srv.response.point_cloud, imgBGR, imgDepth);
@@ -120,7 +121,12 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 
 	
 	// /* Code for coloring the plane of green color
-	if(bestPlane.GetNormal() != cv::Point3f(1.0, 1.0, 1.0) )
+	//std::cout << "BestModel[Normal]: " << bestPlane.GetNormal() << std::endl;
+	//if(bestPlane.GetNormal() != cv::Point3f(1.0, 1.0, 1.0) )
+
+	normal_plane = bestPlane.GetNormal();
+	// std::cout << "BestModel[Normal]: " << normal_plane << std::endl;
+	if(normal_plane.x != 0.0  & normal_plane.y != 0.0 & normal_plane.z != 0.0)
 	{
 		for(int j = 0; j < planeBGR.rows; j++)
 			for (int i = 0; i < planeBGR.cols; i++)
@@ -144,6 +150,8 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 		h_table = CalculateZPlane(bestPlane, croppedDepth);
 		objectsDepth = object_1.pointsObject;
 		objectsBGR = object_1.pointsBRG;
+		cv::imshow("Original RGB", imgBGR);
+		cv::imshow("plane", planeBGR);
 	}
 	else
 	{
@@ -199,7 +207,6 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 		
 		cv::imshow("Original RGB", imgBGR);
 		cv::imshow("OBJECT RECONIZING", croppedBRG);
-		cv::imshow("plane", planeBGR);
 		cv::imshow("objects", objectsBGR);
 		cv::imshow("Objects Point Cloud", objectsDepth);
 
@@ -226,7 +233,7 @@ int main(int argc, char** argv)
 
        
 	srvPCAobject = n.advertiseService("/vision/detect_object/PCA_calculator", callbackPCAobject);
-	cltRgbdRobot = n.serviceClient<point_cloud_manager::GetRgbd>("/hardware/kinect/get_rgbd");
+	cltRgbdKinect = n.serviceClient<point_cloud_manager::GetRgbd>("/hardware/point_cloud_man/get_rgbd_wrt_kinect");
 
 
 	ros::Rate loop(10);

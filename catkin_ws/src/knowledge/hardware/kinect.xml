@@ -1,0 +1,107 @@
+<robot name="kinect_base">
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0.0 0.0 0.35" rpy="1.5707 0.0 0.0"/>
+      <geometry>
+	<box size="0.06 0.7 0.05"/>
+      </geometry>
+      <material name="aluminium"><color rgba="0.45 0.45 0.45 1"/></material>
+    </visual>
+
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+	<cylinder length="0.04" radius="0.20"/>
+      </geometry>
+      <material name="aluminium"><color rgba="0.45 0.45 0.45 1"/></material>
+    </visual>
+
+    
+  </link>
+
+
+  <!--
+      ########################################
+      TORSO LINKS
+      ########################################
+  -->
+
+  <link name="torso_link">
+    <visual>
+      <origin xyz= "0.0 0.0 0.0" rpy="1.5707 0 1.5707"/>
+      <geometry>	
+	<box size="0.06 0.9 0.07"/>
+      </geometry>
+      <material name="black_gray"><color rgba="0.2 0.2 0.2 1"/></material>
+    </visual>
+  </link>
+
+  <!--
+      ######  TORSO JOINTS  #################
+  -->
+  <joint name="torso_connect" type="fixed">
+    <origin xyz= "0.0 0 0.90" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="torso_link"/>
+  </joint>
+
+  
+  <!--
+      ########################################
+      HEAD-KINECT LINKS
+      ########################################
+  -->
+  <link name="head_link1">
+    <visual>
+      <origin xyz= "-0.01 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.06 0.04 0.04"/></geometry>
+      <material name="black"><color rgba="0.2 0.2 0.2 1"/></material>
+    </visual>
+  </link>
+
+  <link name="head_link2">
+    <visual>
+      <origin xyz= "0.0 0 0" rpy="0.0 0 0"/>
+      <geometry><box size="0.03 0.03 0.03"/></geometry>
+      <material name="black"><color rgba="0.2 0.2 0.2 1"/></material>
+    </visual>
+  </link>
+
+  <link name="kinect_link">
+    <visual>
+      <origin xyz="-0.01 0.04 -0.025" rpy="3.141592 0.0 3.141592"/>
+      <geometry>
+        <mesh filename="package://knowledge/hardware/stl/kinect.stl"/>
+      </geometry>
+      <material name="abs"><color rgba="0.2 0.2 0.2 1"/></material>
+    </visual>
+  </link>
+
+  <!--
+      ###### Head links and Joint #########
+  -->
+
+  <joint name="pan_connect" type="fixed">
+    <origin xyz="0 0 0.45" rpy="0.0 0.0 0.0"/>
+    <parent link="torso_link"/>
+    <child link="head_link1"/>
+    <axis xyz="0 0 1" />
+    <limit upper="0" lower="0" effort="0" velocity="0" />
+  </joint>
+
+  <joint name="tilt_connect" type="revolute">
+    <origin xyz="0 0 0.055" rpy="-1.57 0 0" />
+    <parent link="head_link1"/>
+    <child link="head_link2"/>
+    <axis xyz="0 0 1" />
+    <limit upper="0" lower="0" effort="0" velocity="0" />
+  </joint>
+
+  <joint name="kinect_connect" type="fixed">
+    <origin xyz="0.0 -0.08 0" rpy="0 1.5708 0"/>
+    <parent link="head_link2"/>
+    <child link="kinect_link"/>
+  </joint>
+
+</robot>

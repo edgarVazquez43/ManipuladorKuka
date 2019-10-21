@@ -1,0 +1,348 @@
+<robot name="7DOF_manipulator">
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0.0 0.0 0.01" rpy="1.5707 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://knowledge/hardware/stl/base/base.stl"/>
+      </geometry>
+      <material name="aluminium"><color rgba="0.45 0.45 0.45 1"/></material>
+    </visual>
+  </link>
+
+  <link name="torso_link">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.06 0.08 0.87"/>
+      </geometry>
+      <material name="aluminium_1"><color rgba="0.7 0.7 0.7 1"/></material>
+    </visual>
+
+    <visual>
+      <origin xyz="0.0 0.0 0.45" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="0.04 0.36 0.06"/>
+      </geometry>
+      <material name="aluminium_1"><color rgba="0.7 0.7 0.7 1"/></material>
+    </visual>
+
+     <!--Shoulder arm -->
+     <visual>
+       <origin xyz="0.0 -0.028 0.42" rpy="-0.6 0.2 1.5707"/>
+      <geometry> 
+        <mesh filename="package://knowledge/hardware/stl/brazo/hombrera.stl"/>
+      </geometry>
+      <material name="golden_shoulder"><color rgba="0.9 0.75 0.25 1"/></material>
+     </visual>
+
+     <!--Shoulder arm -->
+     <visual>
+      <origin xyz="0.0 0.028 0.42" rpy="-0.6 0.2 -1.5707"/>
+      <geometry> 
+        <mesh filename="package://knowledge/hardware/stl/brazo/hombrera.stl"/>
+      </geometry>
+      <material name="golden_shoulder"><color rgba="0.9 0.75 0.25 1"/></material>
+    </visual>
+    
+  </link>
+
+  <link name="base_ra_arm">
+    <visual>
+      <origin xyz="-0.01 0.0 0.0" rpy="1.5707 0.0 1.5707"/>
+      <geometry> 
+        <mesh filename="package://knowledge/hardware/stl/brazo/mx106_2.stl"/>
+      </geometry>
+      <material name="black_gray"><color rgba="0.2 0.2 0.2 1"/></material>
+    </visual>
+  </link>
+
+  <link name="ra_link0">
+    <visual>
+      <origin xyz="0.0 0.0 0.005" rpy="0.0 -1.5707 0.0"/>
+      <geometry> 
+        <mesh filename="package://knowledge/hardware/stl/brazo/mx106_s.stl"/>
+      </geometry>
+      <material name="gray_black"><color rgba="0.3 0.3 0.3 1"/></material>
+    </visual>
+  </link>
+
+  <link name="ra_link1">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="1.5707 -1.5707 0.0"/>
+      <geometry> 
+        <mesh filename="package://knowledge/hardware/stl/brazo/bone_1.stl"/>
+      </geometry>
+      <material name="ra_material"><color rgba="0.9 0.85 0.75 1"/></material>
+    </visual>
+  </link>
+
+  <link name="ra_link2">
+    <visual>
+      <origin xyz="0.0 0.0 0.19" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://knowledge/hardware/stl/brazo/mx64.stl"/>
+      </geometry>
+      <material name="gray_black"><color rgba="0.2 0.2 0.2 1"/></material>
+    </visual>
+
+    <visual>
+      <origin xyz="0.0 0.0 0.260" rpy="1.5707 0.0 1.5707"/>
+      <geometry>
+        <mesh filename="package://knowledge/hardware/stl/brazo/mx64.stl"/>
+      </geometry>
+      <material name="gray_black"><color rgba="0.3 0.3 0.3 1"/></material>
+    </visual>
+  </link>
+
+  <link name="ra_link3">
+    <visual>
+      <origin xyz="0.0 -0.01 0.0" rpy="1.5707 0.0 -3.141592"/>
+      <geometry>
+        <mesh filename="package://knowledge/hardware/stl/brazo/bone_2.stl"/>
+      </geometry>
+      <material name="ra_material"><color rgba="0.9 0.85 0.75 1"/></material>
+    </visual>
+
+    <visual>
+      <origin xyz="0.0 -0.15 0.0" rpy="1.5707 1.5707 0.0"/>
+      <geometry>
+        <mesh filename="package://knowledge/hardware/stl/brazo/mx64.stl"/>
+      </geometry>
+      <material name="gray_black"><color rgba="0.3 0.3 0.3 1"/></material>
+    </visual>
+  </link>
+
+  <link name="ra_link4">
+  </link>
+
+  <link name="ra_link5">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="3.141592 0.0 0.0"/>
+      <geometry>
+        <mesh filename="package://knowledge/hardware/stl/brazo/mx106_B.stl"/>
+      </geometry>
+      <material name="gray_black"><color rgba="0.3 0.3 0.3 1"/></material>
+    </visual>
+
+    <visual>
+      <origin xyz="0.0 -0.04 0.0" rpy="-1.5707 -1.5707 0.0"/>
+      <geometry>
+        <mesh filename="package://knowledge/hardware/stl/brazo/mx28.stl"/>
+      </geometry>
+      <material name="gray_black"><color rgba="0.3 0.3 0.3 1"/></material>
+    </visual>
+  </link>
+
+  <link name="ra_link6">
+  </link>
+
+  <link name="ra_link7">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+      <!--
+      <geometry> <box size="0.10 0.02 0.046"/></geometry>
+      -->
+      <geometry>
+        <mesh filename="package://knowledge/hardware/stl/brazo/gripper.stl"/>
+      </geometry>
+      <material name="ra_red"><color rgba="0.6 0.1 0.1 1"/></material>
+    </visual>
+  </link>
+
+  <link name="ra_link8">
+    <visual>
+      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 1.5707"/>
+      <!--
+      <geometry> <box size="0.02 0.10 0.046"/></geometry>
+      -->
+      <geometry>
+        <mesh filename="package://knowledge/hardware/stl/brazo/gripper.stl"/>
+      </geometry>
+      <material name="ra_red"><color rgba="0.6 0.1 0.1 1"/></material>
+    </visual>
+  </link>
+
+  <link name="ra_link_grip_center">
+   <visual>
+      <origin xyz="0.0 0.0 -0.04" rpy="1.5707 1.5707 0.0"/>
+      <geometry>
+        <mesh filename="package://knowledge/hardware/stl/brazo/mx28_2.stl"/>
+      </geometry>
+      <material name="gray_black"><color rgba="0.3 0.3 0.3 1"/></material>
+    </visual>
+  </link>
+
+
+
+  <link name="head_link1">
+    <visual>
+      <origin xyz= "-0.01 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.06 0.04 0.04"/></geometry>
+      <material name="black"><color rgba="0.2 0.2 0.2 1"/></material>
+    </visual>
+  </link>
+
+  <link name="head_link2">
+    <visual>
+      <origin xyz= "0.0 0 0" rpy="0.0 0 0"/>
+      <geometry><box size="0.03 0.03 0.03"/></geometry>
+      <material name="black"><color rgba="0.2 0.2 0.2 1"/></material>
+    </visual>
+  </link>
+
+  <link name="kinect_link">
+    <visual>
+      <origin xyz="-0.01 0.04 -0.025" rpy="3.141592 0.0 3.141592"/>
+      <geometry>
+        <mesh filename="package://knowledge/hardware/stl/kinect.stl"/>
+      </geometry>
+      <material name="abs"><color rgba="0.2 0.2 0.2 1"/></material>
+    </visual>
+  </link>
+
+  <link name="careta">
+    <visual>
+      <origin xyz="0.0 0.18 0.015" rpy="3.141592 3.141592 0.0"/>
+      <geometry>
+        <mesh filename="package://knowledge/hardware/stl/careta_2.stl"/>
+      </geometry>
+      <material name="blue"><color rgba="0.1 0.1 0.6 1"/></material>
+    </visual>
+  </link>
+
+
+  <!-- ########################## -->
+  <!--     JOINTS DESCRPTION      -->
+
+  <joint name="ra_base_joint" type="fixed">
+    <origin xyz="0.0 -0.225 0.40" rpy="1.5707 1.5707 0.0"/>
+    <parent link="torso_link"/>
+    <child link="base_ra_arm"/>
+  </joint>
+
+  <joint name="base_torso_connect" type="fixed">
+    <origin xyz="0.0 0.0 0.8" rpy="0.0 0.0 0.0"/>
+    <parent link="base_link"/>
+    <child link="torso_link"/>
+  </joint>
+
+ <!--      ###########################     -->
+ <!--      Right arm joint description     -->
+ 
+  <joint name="ra_1_joint" type="revolute">
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="base_ra_arm"/>
+    <child link="ra_link0"/>
+    <limit effort="0.0" lower="0.0" upper="0" velocity="0.0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="ra_2_joint" type="revolute">
+    <origin xyz="0.064 0.0 0.0" rpy="-1.5707 0.0 0.0"/>
+    <parent link="ra_link0"/>
+    <child link="ra_link1"/>
+    <limit effort="0.0" lower="0.0" upper="0" velocity="0.0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="ra_3_joint" type="revolute">
+    <origin xyz="0.0  0.0  0.0" rpy="1.5707 0.0 1.5707"/>
+    <parent link="ra_link1"/>
+    <child link="ra_link2"/>
+    <limit effort="0.0" lower="0.0" upper="0" velocity="0.0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="ra_4_joint" type="revolute">
+    <origin xyz="0.0 0.0 0.275" rpy="-1.5707 0.0 1.5707"/>
+    <parent link="ra_link2"/>
+    <child link="ra_link3"/>
+    <limit effort="0.0" lower="0.0" upper="0" velocity="0.0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="ra_5_joint" type="revolute">
+    <origin xyz="0.0 0.0 0.0" rpy="1.5707 0.0 0.0"/>
+    <parent link="ra_link3"/>
+    <child link="ra_link4"/>
+    <limit effort="0.0" lower="0.0" upper="0" velocity="0.0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="ra_6_joint" type="revolute">
+    <origin xyz="0.0 0.0 0.226" rpy="-1.5707 0.0 0.0"/>
+    <parent link="ra_link4"/>
+    <child link="ra_link5"/>
+    <limit effort="0.0" lower="0.0" upper="0" velocity="0.0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="ra_7_joint" type="revolute">
+    <origin xyz="0.0 0.0 0.0" rpy="1.5707 0.0 0.0"/>
+    <parent link="ra_link5"/>
+    <child link="ra_link6"/>
+    <limit effort="0.0" lower="0.0" upper="0" velocity="0.0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="ra_grip_right" type="revolute">
+    <origin xyz="0.0 0.045 0.085" rpy="3.141593 -1.570796 3.141592"/>
+    <parent link="ra_link6"/>
+    <child link="ra_link7"/>
+    <limit effort="0.0" lower="0.0" upper="0" velocity="0.0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="ra_grip_left" type="revolute">
+    <origin xyz="0.0 -0.045 0.085" rpy="1.5707 0.0 1.5707"/>
+    <parent link="ra_link6"/>
+    <child link="ra_link8"/>
+    <limit effort="0.0" lower="0.0" upper="0" velocity="0.0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="ra_grip_center" type="fixed">
+    <origin xyz="0.0 0.0 0.130" rpy="0.0 0.0 0.0"/>
+    <parent link="ra_link6"/>
+    <child link="ra_link_grip_center"/>
+    <limit effort="0.0" lower="0.0" upper="0" velocity="0.0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+
+      <!--
+    Head links and Joint
+  -->
+
+
+  <joint name="pan_connect" type="revolute">
+    <origin xyz="0 0 0.60" rpy="0.0 0.0 0.0"/>
+    <parent link="torso_link"/>
+    <child link="head_link1"/>
+    <axis xyz="0 0 1" />
+    <limit upper="0" lower="0" effort="0" velocity="0" />
+  </joint>
+
+  <joint name="tilt_connect" type="revolute">
+  <origin xyz="0 0 0.055" rpy="-1.57 0 0" />
+  <parent link="head_link1"/>
+  <child link="head_link2"/>
+  <axis xyz="0 0 1" />
+  <limit upper="0" lower="0" effort="0" velocity="0" />
+  </joint>
+
+  <joint name="kinect_connect" type="fixed">
+    <origin xyz="0.0 -0.08 0" rpy="0 1.5708 0"/>
+    <parent link="head_link2"/>
+    <child link="kinect_link"/>
+  </joint>
+
+  <joint name="careta_connect" type="fixed">
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="kinect_link"/>
+    <child link="careta"/>
+  </joint>
+
+
+</robot>

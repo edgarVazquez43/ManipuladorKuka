@@ -1,0 +1,419 @@
+<robot name="7DOF_manipulator">
+
+  <link name="base_link">
+    <visual>
+      
+      <origin xyz="0.0 0.0 0.01" rpy="1.5707 0.0 0.0"/>
+      <geometry>
+        <box size="0.1 0.1 0.1" />
+      </geometry>
+
+      <material name="aluminium"><color rgba="0.45 0.45 0.45 1"/></material>
+    </visual>
+  </link>
+
+
+  <!--
+      ########################################
+      RIGHT ARM LINKS
+      ########################################
+  -->
+
+  <link name="base_ra_arm">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+	<box size="0.1 0.1 0.1" />
+      </geometry>
+
+      <material name="Cyan">
+	<color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="ra_link0">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+        <box size="0.05 0.05 0.05" />
+      </geometry>
+
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="ra_link1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+        <box size="0.05 0.05 0.05" />
+      </geometry>
+
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="ra_link2">
+   <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+        <box size="0.05 0.05 0.05" />
+      </geometry>
+
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="ra_link3">
+   <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+        <box size="0.05 0.05 0.05" />
+      </geometry>
+
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="ra_link4">
+  </link>
+
+  <link name="ra_link5">
+   <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+        <box size="0.05 0.05 0.05" />
+      </geometry>
+
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="ra_link6">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+        <box size="0.05 0.05 0.05" />
+      </geometry>
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+  <link name="ra_link_grip_center">
+  <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+        <box size="0.05 0.05 0.05" />
+      </geometry>
+
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+
+  <!--
+      ########################################
+      LEFT ARM LINKS
+      ########################################
+  -->
+
+  <link name="base_la_arm">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+	<box size="0.1 0.1 0.1" />
+      </geometry>
+
+      <material name="Cyan">
+	<color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="la_link0">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+        <box size="0.05 0.05 0.05" />
+      </geometry>
+
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="la_link1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+        <box size="0.05 0.05 0.05" />
+      </geometry>
+
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="la_link2">
+   <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+        <box size="0.05 0.05 0.05" />
+      </geometry>
+
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="la_link3">
+   <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+        <box size="0.05 0.05 0.05" />
+      </geometry>
+
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="la_link4">
+  </link>
+
+  <link name="la_link5">
+   <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+        <box size="0.05 0.05 0.05" />
+      </geometry>
+
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="la_link6">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+        <box size="0.05 0.05 0.05" />
+      </geometry>
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+  
+  <link name="la_link_grip_center">
+  <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+
+      <geometry>
+        <box size="0.05 0.05 0.05" />
+      </geometry>
+
+      <material name="Cyan">
+        <color rgba="0 1.0 1.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+
+  <!--
+      JOINTS
+      
+      ########
+      Right arm joint description
+      ###########    
+  -->
+  
+  <joint name="ra_base_joint" type="fixed">
+    <origin xyz="0.0 -0.225 1.30" rpy="0.0 0.0 0.0"/>
+    <parent link="base_link"/>
+    <child link="base_ra_arm"/>
+  </joint>
+  
+  <joint name="ra_1_joint" type="revolute">
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="base_ra_arm"/>
+    <child link="ra_link0"/>
+    <limit effort="1000.0" lower="-1.570795" upper="0.0" velocity="0.5"/>   
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+  <joint name="ra_2_joint" type="revolute">
+    <origin xyz="0.0 0.0 -0.064" rpy="0.0 0.0 0.0"/>
+    <parent link="ra_link0"/>
+    <child link="ra_link1"/>
+    <limit effort="1000.0" lower="-0.21" upper="1.25" velocity="0.5"/>
+    <axis xyz="-1 0 0"/>
+  </joint>
+
+  <joint name="ra_3_joint" type="revolute">
+    <origin xyz="0.0  0.0 -0.21" rpy="0.0 0.0 0.0"/>
+    <parent link="ra_link1"/>
+    <child link="ra_link2"/>
+    <limit effort="1000.0" lower="-1.570795" upper="1.570795" velocity="0.5"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="ra_4_joint" type="revolute">
+    <origin xyz="0.0 0.0 -0.06" rpy="0.0 0.0 0.0"/>
+    <parent link="ra_link2"/>
+    <child link="ra_link3"/>
+    <limit effort="1000.0" lower="-1.570795" upper="0.0" velocity="0.5"/>
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+  <joint name="ra_5_joint" type="revolute">
+    <origin xyz="0.0 0.0 -0.18" rpy="0.0 0.0 0.0"/>
+    <parent link="ra_link3"/>
+    <child link="ra_link4"/>
+    <limit effort="1000.0" lower="-1.570795" upper="1.570795" velocity="0.5"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="ra_6_joint" type="revolute">
+    <origin xyz="0.0 0.0 -0.036" rpy="0.0 0.0 0.0"/>
+    <parent link="ra_link4"/>
+    <child link="ra_link5"/>
+    <limit effort="1000.0" lower="-1.570795" upper="1.570795" velocity="0.5"/>
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+  <joint name="ra_7_joint" type="revolute">
+    <origin xyz="0.0 0.0 -0.095" rpy="0.0 0.0 0.0"/>
+    <parent link="ra_link5"/>
+    <child link="ra_link6"/>
+    <limit effort="1000.0" lower="-1.570795" upper="1.570795" velocity="0.5"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="ra_grip_center" type="fixed">
+    <origin xyz="0.0 0.0 -0.06" rpy="0.0 0.0 0.0"/>
+    <parent link="ra_link6"/>
+    <child link="ra_link_grip_center"/>
+    <limit effort="0.0" lower="0.0" upper="0" velocity="0.0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+
+
+
+  
+  <!--
+      JOINTS
+      
+      ########
+      Left arm joint description
+      ###########    
+  -->
+  
+  <joint name="la_base_joint" type="fixed">
+    <origin xyz="0.0 0.225 1.30" rpy="0.0 0.0 0.0"/>
+    <parent link="base_link"/>
+    <child link="base_la_arm"/>
+  </joint>
+  
+  <joint name="la_1_joint" type="revolute">
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+    <parent link="base_la_arm"/>
+    <child link="la_link0"/>
+    <limit effort="1000.0" lower="-1.570795" upper="0.0" velocity="0.5"/>   
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+  <joint name="la_2_joint" type="revolute">
+    <origin xyz="0.0 0.0 -0.064" rpy="0.0 0.0 0.0"/>
+    <parent link="la_link0"/>
+    <child link="la_link1"/>
+    <limit effort="1000.0" lower="-0.21" upper="1.25" velocity="0.5"/>
+    <axis xyz="-1 0 0"/>
+  </joint>
+
+  <joint name="la_3_joint" type="revolute">
+    <origin xyz="0.0  0.0 -0.21" rpy="0.0 0.0 0.0"/>
+    <parent link="la_link1"/>
+    <child link="la_link2"/>
+    <limit effort="1000.0" lower="-1.570795" upper="1.570795" velocity="0.5"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="la_4_joint" type="revolute">
+    <origin xyz="0.0 0.0 -0.06" rpy="0.0 0.0 0.0"/>
+    <parent link="la_link2"/>
+    <child link="la_link3"/>
+    <limit effort="1000.0" lower="-1.570795" upper="0.0" velocity="0.5"/>
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+  <joint name="la_5_joint" type="revolute">
+    <origin xyz="0.0 0.0 -0.18" rpy="0.0 0.0 0.0"/>
+    <parent link="la_link3"/>
+    <child link="la_link4"/>
+    <limit effort="1000.0" lower="-1.570795" upper="1.570795" velocity="0.5"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="la_6_joint" type="revolute">
+    <origin xyz="0.0 0.0 -0.036" rpy="0.0 0.0 0.0"/>
+    <parent link="la_link4"/>
+    <child link="la_link5"/>
+    <limit effort="1000.0" lower="-1.570795" upper="1.570795" velocity="0.5"/>
+    <axis xyz="0 -1 0"/>
+  </joint>
+
+  <joint name="la_7_joint" type="revolute">
+    <origin xyz="0.0 0.0 -0.095" rpy="0.0 0.0 0.0"/>
+    <parent link="la_link5"/>
+    <child link="la_link6"/>
+    <limit effort="1000.0" lower="-1.570795" upper="1.570795" velocity="0.5"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <joint name="la_grip_center" type="fixed">
+    <origin xyz="0.0 0.0 -0.06" rpy="0.0 0.0 0.0"/>
+    <parent link="la_link6"/>
+    <child link="la_link_grip_center"/>
+    <limit effort="0.0" lower="0.0" upper="0" velocity="0.0"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+
+</robot>

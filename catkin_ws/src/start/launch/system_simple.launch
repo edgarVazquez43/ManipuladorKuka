@@ -1,12 +1,12 @@
 <launch>
-  <!-- <param name="robot_description" command="cat $(find knowledge)/hardware/manipulator.xml" /> -->
-  <!-- <param name="robot_description" command="cat $(find knowledge)/hardware/manipulatorsMoveIt.xml" /> -->
+  <param name="robot_description" command="cat $(find knowledge)/hardware/kinect.xml" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
 
-  <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch" />
+  <!-- <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch" /> -->
 
   <group ns="hardware">
     <node name="kinect_man" pkg="kinect_mannager_2" type="kinect_mannager_2_node" output="screen"/>
+    <node name="head_simul" pkg="head" type="head_simul_node.py" output="screen"/>
   </group>
 
   <group ns="hri">

@@ -18,7 +18,7 @@ sensor_msgs::PointCloud2 pc2_wrtKinect;
 void cloud_callback(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
   pc2_wrtKinect = *cloud_msg;
-  // pcl_ros::transformPointCloud("base_link", pc2_wrtKinect, pc2_wrtRobot, *tf_listener);
+  pcl_ros::transformPointCloud("base_link", pc2_wrtKinect, pc2_wrtRobot, *tf_listener);
   // VisionTools::PointCloud2Msg_ToCvMat(pc2_wrtRobot, imgBGR, imgDepth);
   // cv::imshow("Depth", imgDepth);
   // cv::imshow("RGB", imgBGR);
@@ -48,24 +48,27 @@ int main(int argc, char** argv)
   ros::Rate loop(30);
 
   ros::Subscriber subHSRpc2;
+  ros::Publisher pubRobotFrame;
   // ros::Publisher pubKinectFrame;
-  // ros::Publisher pubRobotFrame;
 
-  // ros::ServiceServer srvRgbdRobot;
+  ros::ServiceServer srvRgbdRobot;
   ros::ServiceServer srvRgbdKinect;
+
+  ros::Time now = ros::Time::now();
+
 
 
   subHSRpc2 = nh.subscribe("/kinect2/qhd/points", 1, cloud_callback);
+  pubRobotFrame  = nh.advertise<sensor_msgs::PointCloud2>("/hardware/point_cloud_man/rgbd_wrt_robot", 1);
   // pubKinectFrame = nh.advertise<sensor_msgs::PointCloud2>("/hardware/point_cloud_man/rgbd_wrt_kinect",1);
-  // pubRobotFrame  = nh.advertise<sensor_msgs::PointCloud2>("/hardware/point_cloud_man/rgbd_wrt_robot", 1);
 
 
-  // srvRgbdRobot = nh.advertiseService("/hardware/point_cloud_man/get_rgbd_wrt_robot", robotRgbd_callback);
+  srvRgbdRobot = nh.advertiseService("/hardware/point_cloud_man/get_rgbd_wrt_robot", robotRgbd_callback);
   srvRgbdKinect = nh.advertiseService("/hardware/point_cloud_man/get_rgbd_wrt_kinect", kinectRgbd_callback);
 
   // ############# Code to Tranform Point Cloud  ###########
-  // tf_listener = new tf::TransformListener();
-  // tf_listener->waitForTransform("base_link", "head_rgbd_sensor_link", ros::Time(3), ros::Duration(10.0));
+  tf_listener = new tf::TransformListener();
+  tf_listener->waitForTransform("base_link", "kinect_link", now, ros::Duration(2.0));
 
   ros::spinOnce();
   loop.sleep();
@@ -74,12 +77,10 @@ int main(int argc, char** argv)
   while( ros::ok() )
   {
     // if(pubKinectFrame.getNumSubscribers() > 0)
-    // {
     //   pubKinectFrame.publish(pc2_wrtKinect);
-    // }
 
-    // if(pubRobotFrame.getNumSubscribers() > 0)
-    //   pubRobotFrame.publish(pc2_wrtRobot);
+    if(pubRobotFrame.getNumSubscribers() > 0)
+      pubRobotFrame.publish(pc2_wrtRobot);
 
     ros::spinOnce();
     loop.sleep();

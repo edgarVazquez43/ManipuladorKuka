@@ -17,7 +17,6 @@
       <material name="aluminium"><color rgba="0.45 0.45 0.45 1"/></material>
     </visual>
 
-    
   </link>
 
 
@@ -68,7 +67,7 @@
     </visual>
   </link>
 
-  <link name="kinect_link">
+  <link name="kinect2_ir_optical_frame">
     <visual>
       <origin xyz="-0.01 0.04 -0.025" rpy="3.141592 0.0 3.141592"/>
       <geometry>
@@ -76,6 +75,13 @@
       </geometry>
       <material name="abs"><color rgba="0.2 0.2 0.2 1"/></material>
     </visual>
+  </link>
+
+  <link name="kinect2_rgb_optical_frame">
+    <!--visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <material name="abs"><color rgba="0.2 0.2 0.2 1"/></material>
+    </visual-->
   </link>
 
   <!--
@@ -101,7 +107,13 @@
   <joint name="kinect_connect" type="fixed">
     <origin xyz="0.0 -0.08 0" rpy="0 1.5708 0"/>
     <parent link="head_link2"/>
-    <child link="kinect_link"/>
+    <child link="kinect2_ir_optical_frame"/>
+  </joint>
+
+  <joint name="kinect_connect_2" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="kinect2_ir_optical_frame"/>
+    <child link="kinect2_rgb_optical_frame"/>
   </joint>
 
 </robot>

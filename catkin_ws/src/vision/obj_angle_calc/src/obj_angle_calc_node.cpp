@@ -63,7 +63,7 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 
 	// *** Parametros de RANSAC *** //
 	attemps = 150;		// Numero de iteraciones para RANSAC
-	threshold = 0.01;	// Distancia al plano en metros
+	threshold = 0.009;	// Distancia al plano en metros
 
 	x_obj = 0.0;
 	y_obj = 0.0;
@@ -72,11 +72,11 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 
 	points_obj = 0;
 
-	xmin = 150;
-	ymin = 170;
+	xmin = 100;
+	ymin = 120;
 
-	W = 350;
-	H = 280;
+	W = 400;
+	H = 320;
 
 	centroid_coord.push_back(0.0);
 	centroid_coord.push_back(0.0);
@@ -233,7 +233,7 @@ int main(int argc, char** argv)
 
        
 	srvPCAobject = n.advertiseService("/vision/detect_object/PCA_calculator", callbackPCAobject);
-	cltRgbdKinect = n.serviceClient<point_cloud_manager::GetRgbd>("/hardware/point_cloud_man/get_rgbd_wrt_kinect");
+	cltRgbdKinect = n.serviceClient<point_cloud_manager::GetRgbd>("/hardware/point_cloud_man/get_rgbd_wrt_robot");
 
 
 	ros::Rate loop(10);

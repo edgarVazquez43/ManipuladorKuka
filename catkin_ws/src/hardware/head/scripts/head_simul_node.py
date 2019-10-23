@@ -27,6 +27,7 @@ def main():
     jointStates.name = ["pan_connect", "tilt_connect"]
     jointStates.position = [0 ,0]
 
+    #Estableciendo subs y 
     subPosition = rospy.Subscriber("head/goal_pose", Float32MultiArray, callbackPosHead)
     pubHeadPose = rospy.Publisher("head/current_pose", Float32MultiArray, queue_size = 1);
     pubJointStates = rospy.Publisher("/joint_states", JointState, queue_size = 1)

@@ -68,7 +68,7 @@ int main(int argc, char** argv)
 
   // ############# Code to Tranform Point Cloud  ###########
   tf_listener = new tf::TransformListener();
-  tf_listener->waitForTransform("base_link", "kinect_link", now, ros::Duration(2.0));
+  tf_listener->waitForTransform("base_link", "kinect2_ir_optical_frame", now, ros::Duration(2.0));
 
   ros::spinOnce();
   loop.sleep();

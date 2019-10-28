@@ -1,8 +1,16 @@
 <launch>
+
+  <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch" />
+
   <param name="robot_description" command="cat $(find knowledge)/hardware/kinect.xml" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
 
-  <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch" />
+  <group ns="kuka">
+    <arg name="model" default="$(find assembly_kuka_simp)/urdf/kuka_modelo.urdf"/>
+    <arg name="gui" default="true" />
+    <param name="robot_description" command="cat $(find assembly_kuka_simp)/urdf/kuka_modelo.urdf" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+  </group>
 
   <group ns="hardware">
     <node name="kinect_man" pkg="kinect_mannager_2" type="kinect_mannager_2_node" output="screen"/>
@@ -13,7 +21,6 @@
     <node name="rviz" pkg="rviz" type="rviz"/>
   </group>
 
-  
   <group ns="vision">
     <node name="obj_angle_calc" pkg="obj_angle_calc" type="obj_angle_calc_node" output="screen"/>
   </group>

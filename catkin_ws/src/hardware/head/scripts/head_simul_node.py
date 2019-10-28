@@ -27,16 +27,19 @@ def main():
     jointStates.name = ["pan_connect", "tilt_connect"]
     jointStates.position = [0 ,0]
 
-    #Estableciendo subs y 
+    #Stablishing suscribers & plublishers 
     subPosition = rospy.Subscriber("head/goal_pose", Float32MultiArray, callbackPosHead)
     pubHeadPose = rospy.Publisher("head/current_pose", Float32MultiArray, queue_size = 1);
     pubJointStates = rospy.Publisher("/joint_states", JointState, queue_size = 1)
     pubHeadBattery = rospy.Publisher("/hardware/robot_state/head_battery", Float32, queue_size=1)
     
+    #Rate at which ROS will loop (in Hz)
     loop = rospy.Rate(30)
+
 
     global goalPan
     global goalTilt
+
     goalPan = 0
     goalTilt = 0
     pan = 0
@@ -45,6 +48,7 @@ def main():
     speedTilt = 0.1
     msgCurrentPose = Float32MultiArray()
     msgCurrentPose.data = [0, 0]
+
     while not rospy.is_shutdown():
         deltaPan = goalPan - pan
         deltaTilt = goalTilt - tilt

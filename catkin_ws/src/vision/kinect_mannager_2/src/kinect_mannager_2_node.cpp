@@ -49,7 +49,7 @@ int main(int argc, char** argv)
 
   ros::Subscriber subHSRpc2;
   ros::Publisher pubRobotFrame;
-  // ros::Publisher pubKinectFrame;
+  ros::Publisher pubKinectFrame;
 
   ros::ServiceServer srvRgbdRobot;
   ros::ServiceServer srvRgbdKinect;
@@ -60,7 +60,7 @@ int main(int argc, char** argv)
 
   subHSRpc2 = nh.subscribe("/kinect2/qhd/points", 1, cloud_callback);
   pubRobotFrame  = nh.advertise<sensor_msgs::PointCloud2>("/hardware/point_cloud_man/rgbd_wrt_robot", 1);
-  // pubKinectFrame = nh.advertise<sensor_msgs::PointCloud2>("/hardware/point_cloud_man/rgbd_wrt_kinect",1);
+  pubKinectFrame = nh.advertise<sensor_msgs::PointCloud2>("/hardware/point_cloud_man/rgbd_wrt_kinect",1);
 
 
   srvRgbdRobot = nh.advertiseService("/hardware/point_cloud_man/get_rgbd_wrt_robot", robotRgbd_callback);
@@ -76,8 +76,8 @@ int main(int argc, char** argv)
 
   while( ros::ok() )
   {
-    // if(pubKinectFrame.getNumSubscribers() > 0)
-    //   pubKinectFrame.publish(pc2_wrtKinect);
+    if(pubKinectFrame.getNumSubscribers() > 0)
+      pubKinectFrame.publish(pc2_wrtKinect);
 
     if(pubRobotFrame.getNumSubscribers() > 0)
       pubRobotFrame.publish(pc2_wrtRobot);

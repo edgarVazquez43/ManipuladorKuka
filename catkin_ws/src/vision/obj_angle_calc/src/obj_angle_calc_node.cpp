@@ -72,8 +72,8 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 
 	points_obj = 0;
 
-	xmin = 100;
-	ymin = 120;
+	xmin = 150;
+	ymin = 150;
 
 	W = 400;
 	H = 320;

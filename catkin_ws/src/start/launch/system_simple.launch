@@ -3,6 +3,7 @@
   <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch" />
 
   <param name="robot_description" command="cat $(find knowledge)/hardware/kinect.xml" />
+  <node name="kuka_kinect_tf" pkg="tf" type="static_transform_publisher" args="1.5 1.5 0 3.14159 0 0 base_link base_link_kinect 100"/>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
 
   <group ns="kuka">
@@ -10,6 +11,7 @@
     <arg name="gui" default="true" />
     <param name="robot_description" command="cat $(find assembly_kuka_simp)/urdf/kuka_modelo.urdf" />
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
+    <node name="joint_state_publisher_kuka" pkg="joint_state_publisher" type="joint_state_publisher" />
   </group>
 
   <group ns="hardware">

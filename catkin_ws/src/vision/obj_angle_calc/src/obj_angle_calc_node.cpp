@@ -63,7 +63,7 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 
 	// *** Parametros de RANSAC *** //
 	attemps = 150;		// Numero de iteraciones para RANSAC
-	threshold = 0.009;	// Distancia al plano en metros
+	threshold = 0.01;	// Distancia al plano en metros
 
 	x_obj = 0.0;
 	y_obj = 0.0;
@@ -72,11 +72,11 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 
 	points_obj = 0;
 
-	xmin = 150;
-	ymin = 150;
+	xmin = 180;
+	ymin = 180;
 
-	W = 400;
-	H = 320;
+	W = 320;
+	H = 300;
 
 	centroid_coord.push_back(0.0);
 	centroid_coord.push_back(0.0);

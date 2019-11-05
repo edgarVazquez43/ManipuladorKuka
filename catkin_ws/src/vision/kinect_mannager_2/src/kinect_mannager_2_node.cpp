@@ -7,27 +7,33 @@
 #include "hardware_tools/VisionTools.h"
 #include "point_cloud_manager/GetRgbd.h"
 
+//Objetos OpenCV para la imagen RGB y la profundidad.
 cv::Mat imgBGR;
 cv::Mat imgDepth;
 
+//Listener de una trasformacion
 tf::TransformListener* tf_listener;
+
+//Objetos tipo PointCloud2 para la nube de puntos respecto al kinect y al manipulador KUKA
 sensor_msgs::PointCloud2 pc2_wrtRobot;
 sensor_msgs::PointCloud2 pc2_wrtKinect;
 
-
+//Funcion callback para trasformar la nube de puntos 
 void cloud_callback(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
 {
   pc2_wrtKinect = *cloud_msg;
+
+  //args: (target_frame, msgs_in, msgs_out, tf_listener) 
   pcl_ros::transformPointCloud("base_link", pc2_wrtKinect, pc2_wrtRobot, *tf_listener);
+
   // VisionTools::PointCloud2Msg_ToCvMat(pc2_wrtRobot, imgBGR, imgDepth);
   // cv::imshow("Depth", imgDepth);
   // cv::imshow("RGB", imgBGR);
 }
 
-
+ 
 bool robotRgbd_callback(point_cloud_manager::GetRgbd::Request &req, point_cloud_manager::GetRgbd::Response &resp)
 {
-
   resp.point_cloud = pc2_wrtRobot;
   return true;
 }
@@ -37,7 +43,6 @@ bool kinectRgbd_callback(point_cloud_manager::GetRgbd::Request &req, point_cloud
   resp.point_cloud = pc2_wrtKinect;
   return true;
 }
-
 
 int main(int argc, char** argv)
 {
@@ -56,12 +61,9 @@ int main(int argc, char** argv)
 
   ros::Time now = ros::Time::now();
 
-
-
   subHSRpc2 = nh.subscribe("/kinect2/qhd/points", 1, cloud_callback);
   pubRobotFrame  = nh.advertise<sensor_msgs::PointCloud2>("/hardware/point_cloud_man/rgbd_wrt_robot", 1);
   pubKinectFrame = nh.advertise<sensor_msgs::PointCloud2>("/hardware/point_cloud_man/rgbd_wrt_kinect",1);
-
 
   srvRgbdRobot = nh.advertiseService("/hardware/point_cloud_man/get_rgbd_wrt_robot", robotRgbd_callback);
   srvRgbdKinect = nh.advertiseService("/hardware/point_cloud_man/get_rgbd_wrt_kinect", kinectRgbd_callback);
@@ -72,7 +74,6 @@ int main(int argc, char** argv)
 
   ros::spinOnce();
   loop.sleep();
-
 
   while( ros::ok() )
   {

@@ -5,6 +5,7 @@
 #include <geometry_msgs/Pose.h>
 #include <geometry_msgs/Vector3.h>
 #include <tf/transform_listener.h>
+#include <tf/transform_broadcaster.h>
 #include <visualization_msgs/Marker.h>
 #include "vision_msgs/DetectObjects.h"
 
@@ -12,11 +13,11 @@ visualization_msgs::Marker centroid_marker, pca1, pca2, pca3, vectPlane;
 
 bool markerSetup()
 {
-    centroid_marker.header.frame_id = "base_link";
-    pca1.header.frame_id = "base_link";
-    pca2.header.frame_id = "base_link";
-    pca3.header.frame_id = "base_link";
-    vectPlane.header.frame_id = "base_link";
+    centroid_marker.header.frame_id = "base_link_kinect";
+    pca1.header.frame_id = "base_link_kinect";
+    pca2.header.frame_id = "base_link_kinect";
+    pca3.header.frame_id = "base_link_kinect";
+    vectPlane.header.frame_id = "base_link_kinect";
     
     centroid_marker.header.stamp = ros::Time::now();
     pca1.header.stamp = ros::Time::now();
@@ -140,15 +141,14 @@ bool buildMarkerAxis(geometry_msgs::Vector3 PCA_axis_0,
 
 
 
-
 int main(int argc, char** argv)
 {
     std::cout << "INITIALIZING A TEST FOR GRASP OBJECT BY EDGAR-II..." << std::endl;
-    ros::init(argc, argv, "pca_obj");
-    ros::NodeHandle n;
+    ros::init(argc, argv, "pca_obj"); //Creación del nodo "pca_obj"
+    ros::NodeHandle n; //Objeto que representa al nodo
 
     int count = 0;
-    float objectYaw, objectYaw1;
+    float objectYaw, objectYaw1, roll, pitch, yaw;
     
     std::vector<float> alpha, beta, gamma;
     std::vector<float> mag_axis;
@@ -156,23 +156,26 @@ int main(int argc, char** argv)
     tf::TransformListener listener;
     tf::StampedTransform transform;
 
-    geometry_msgs::Pose centroid;
+    tf::TransformBroadcaster br;
+    tf::Transform tr;
+
+    geometry_msgs::Pose centroid;	//Definiendo objeto tipo pose (posición y orientación) llamado "centroide"
     geometry_msgs::Vector3 axis_resp_0, axis_resp_1, axis_resp_2, aux;
-    vision_msgs::DetectObjects srv_detectObj;
+    vision_msgs::DetectObjects srv_detectObj; //Definiendo el servicio srv_detecObj
     
-    ros::ServiceClient cltDetectObjectsPCA;
+    ros::ServiceClient cltDetectObjectsPCA; //Creando cliente de servicio
     ros::Publisher marker_pub;
 
     std::ofstream fileAngleObjs;
 
+    //Definiendo el cliente del servicio como 
+    cltDetectObjectsPCA = n.serviceClient<vision_msgs::DetectObjects>("vision/detect_object/PCA_calculator"); 
     
-    cltDetectObjectsPCA = n.serviceClient<vision_msgs::DetectObjects>("vision/detect_object/PCA_calculator");
+
     marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 10);
 
     fileAngleObjs.open("/home/edgar/angle_joystick.txt");
-
-
-    
+ 
     alpha.resize(3);
     beta.resize(3);
     gamma.resize(3);
@@ -196,6 +199,9 @@ int main(int argc, char** argv)
         axis_resp_0 = srv_detectObj.response.recog_objects[0].principal_axis[0];
         axis_resp_1 = srv_detectObj.response.recog_objects[0].principal_axis[1];
         axis_resp_2 = srv_detectObj.response.recog_objects[0].principal_axis[2];
+	
+	//updateTransform(centroid);
+
 
         if( fabs(axis_resp_0.y) > fabs(aux.y)  )
 	  aux = axis_resp_0;
@@ -210,7 +216,7 @@ int main(int argc, char** argv)
 		  << aux << std::endl; 
 	
 
-	//Calculate magnitude principal axis
+	// Calculate magnitude principal axis
 	mag_axis[0] = sqrt(axis_resp_0.x*axis_resp_0.x +
 			   axis_resp_0.y*axis_resp_0.y +
 			   axis_resp_0.z*axis_resp_0.z);
@@ -228,6 +234,7 @@ int main(int argc, char** argv)
 			   aux.z*aux.z);
 
 	//Calculate directions cosines
+	// cos(a,b,c) = U_x,y,z/|U|
 	alpha[0] = acos(axis_resp_0.x/mag_axis[0]);
 	beta[0]  = acos(axis_resp_0.y/mag_axis[0]);
 	gamma[0] = acos(axis_resp_0.z/mag_axis[0]);
@@ -251,6 +258,20 @@ int main(int argc, char** argv)
 
 	if(aux.y < 0.0)
 	  objectYaw1 += 90.0;
+
+	
+	//REAL ROLL,PITCH,YAW
+	roll = atan(axis_resp_0.y/axis_resp_0.z);	
+	pitch = atan(axis_resp_0.z/axis_resp_0.x); //negativo?
+	yaw = atan(axis_resp_0.y/axis_resp_0.x);
+	
+	tf::Quaternion q;
+	q.setRPY(roll,pitch+1.57079,yaw-1.57079);
+
+	tr.setOrigin(tf::Vector3(centroid.position.x,centroid.position.y,centroid.position.z));
+        //yaw,pitch,roll
+	tr.setRotation(q);
+	br.sendTransform(tf::StampedTransform(tr, ros::Time::now(), "base_link_kinect", "centroid_wrt_robot"));
 
 
         std::cout << "Centroid: " << std::endl
@@ -286,6 +307,10 @@ int main(int argc, char** argv)
 	std::cout << "  roll  = " << gamma[0]*180/3.141592
 		  << "  pitch = " << beta[1]*180/3.141592
 		  << "  yaw   = " << alpha[2]*180/3.141592 << std::endl << std::endl;
+
+	std::cout << "  Actual roll  = " << roll*180/3.141592
+		  << "  Actual pitch = " << (pitch+1.57079)*180/3.141592
+		  << "  Actual yaw   = " << (yaw-1.57079)*180/3.141592 << std::endl << std::endl;
 
 	std::cout << "object yaw:  " << objectYaw << std::endl << std::endl;
 	std::cout << "object yaw:  " << objectYaw1 << std::endl << std::endl;

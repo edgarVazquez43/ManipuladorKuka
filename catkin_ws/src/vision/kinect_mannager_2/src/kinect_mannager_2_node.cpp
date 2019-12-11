@@ -24,7 +24,7 @@ void cloud_callback(const sensor_msgs::PointCloud2ConstPtr& cloud_msg)
   pc2_wrtKinect = *cloud_msg;
 
   //args: (target_frame, msgs_in, msgs_out, tf_listener) 
-  pcl_ros::transformPointCloud("base_link", pc2_wrtKinect, pc2_wrtRobot, *tf_listener);
+  pcl_ros::transformPointCloud("base_link_kinect", pc2_wrtKinect, pc2_wrtRobot, *tf_listener);
 
   // VisionTools::PointCloud2Msg_ToCvMat(pc2_wrtRobot, imgBGR, imgDepth);
   // cv::imshow("Depth", imgDepth);

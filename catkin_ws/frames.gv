@@ -1,0 +1,19 @@
+digraph G {
+"world" -> "base_link"[label="Broadcaster: /kuka/robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1573496682.223 sec old)\nBuffer length: 0.000 sec\n"];
+"head_link2" -> "kinect2_ir_optical_frame"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1573496682.223 sec old)\nBuffer length: 0.000 sec\n"];
+"head_link1" -> "head_link2"[label="Broadcaster: /robot_state_publisher\nAverage rate: 30.217 Hz\nMost recent transform: 1573496682.221 ( 0.002 sec old)\nBuffer length: 4.898 sec\n"];
+"kinect2_ir_optical_frame" -> "kinect2_rgb_optical_frame"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1573496682.223 sec old)\nBuffer length: 0.000 sec\n"];
+"torso_link" -> "head_link1"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1573496682.223 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link_kinect" -> "torso_link"[label="Broadcaster: /robot_state_publisher\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1573496682.223 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "base_link_kinect"[label="Broadcaster: /kuka_kinect_tf\nAverage rate: 10.163 Hz\nMost recent transform: 1573496682.258 ( -0.036 sec old)\nBuffer length: 4.821 sec\n"];
+"base_link" -> "link_1"[label="Broadcaster: /kuka/robot_state_publisher\nAverage rate: 10.209 Hz\nMost recent transform: 1573496682.192 ( 0.030 sec old)\nBuffer length: 4.800 sec\n"];
+"link_1" -> "link_2"[label="Broadcaster: /kuka/robot_state_publisher\nAverage rate: 10.209 Hz\nMost recent transform: 1573496682.192 ( 0.030 sec old)\nBuffer length: 4.800 sec\n"];
+"link_2" -> "link_3"[label="Broadcaster: /kuka/robot_state_publisher\nAverage rate: 10.209 Hz\nMost recent transform: 1573496682.192 ( 0.030 sec old)\nBuffer length: 4.800 sec\n"];
+"link_3" -> "link_4"[label="Broadcaster: /kuka/robot_state_publisher\nAverage rate: 10.209 Hz\nMost recent transform: 1573496682.192 ( 0.030 sec old)\nBuffer length: 4.800 sec\n"];
+"link_4" -> "link_5"[label="Broadcaster: /kuka/robot_state_publisher\nAverage rate: 10.209 Hz\nMost recent transform: 1573496682.192 ( 0.030 sec old)\nBuffer length: 4.800 sec\n"];
+"link_5" -> "link_6"[label="Broadcaster: /kuka/robot_state_publisher\nAverage rate: 10.209 Hz\nMost recent transform: 1573496682.192 ( 0.030 sec old)\nBuffer length: 4.800 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1573496682.223"[ shape=plaintext ] ;
+ }->"world";
+}

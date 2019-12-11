@@ -62,8 +62,8 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 	plane3D bestPlane;
 
 	// *** Parametros de RANSAC *** //
-	attemps = 150;		// Numero de iteraciones para RANSAC
-	threshold = 0.01;	// Distancia al plano en metros
+	attemps = 175;		// Numero de iteraciones para RANSAC
+	threshold = 0.009;	// Distancia al plano en metros
 
 	x_obj = 0.0;
 	y_obj = 0.0;
@@ -72,10 +72,10 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 
 	points_obj = 0;
 
-	xmin = 180;
-	ymin = 180;
+	xmin = 100;
+	ymin = 100;
 
-	W = 320;
+	W = 400;
 	H = 300;
 
 	centroid_coord.push_back(0.0);
@@ -155,7 +155,7 @@ bool callbackPCAobject(vision_msgs::DetectObjects::Request &req,
 	}
 	else
 	{
-	        std::cout << "I can't found the plane....   :( " << std::endl;
+	        std::cout << "I can't find the plane....   :( " << std::endl;
 		objectsDepth = cv::Mat(50, 50, CV_8UC3);
 	}
 

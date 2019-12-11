@@ -28,7 +28,7 @@ def main():
     jointStates.position = [0 ,0]
 
     #Stablishing suscribers & plublishers 
-    subPosition = rospy.Subscriber("head/goal_pose", Float32MultiArray, callbackPosHead)
+    subPosition = rospy.Subscriber("head/goal_pose", Float32MultiArray, callbackPosHead) #Se corre esta linea para ajustar el angulo del kinect
     pubHeadPose = rospy.Publisher("head/current_pose", Float32MultiArray, queue_size = 1);
     pubJointStates = rospy.Publisher("/joint_states", JointState, queue_size = 1)
     pubHeadBattery = rospy.Publisher("/hardware/robot_state/head_battery", Float32, queue_size=1)

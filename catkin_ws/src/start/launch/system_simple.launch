@@ -1,30 +1,40 @@
 <launch>
 
-  <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch" />
+  <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch" /> <!-- Incluye un archivo.launch del iai_kinect2, levanta nodos -->
 
-  <param name="robot_description" command="cat $(find knowledge)/hardware/kinect.xml" />
-  <node name="kuka_kinect_tf" pkg="tf" type="static_transform_publisher" args="1.5 1.5 0 3.14159 0 0 base_link base_link_kinect 100"/>
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
-
-  <group ns="kuka">
-    <arg name="model" default="$(find assembly_kuka_simp)/urdf/kuka_modelo.urdf"/>
+  <group ns="kuka"> <!-- Podemos volver a definir parametros en un grupo-->
+    <arg name="model" default="$(find assembly_kuka_simp)/urdf/kuka_modelo.urdf"/> <!-- Modelo del Kuka con extension .urdf necesario para 
+										obtener todos su parametros-->
     <arg name="gui" default="true" />
-    <param name="robot_description" command="cat $(find assembly_kuka_simp)/urdf/kuka_modelo.urdf" />
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
-    <node name="joint_state_publisher_kuka" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <param name="robot_description" command="cat $(find assembly_kuka_simp)/urdf/kuka_modelo.urdf" /> <!-- Descripcion del Kuka con extension 
+											.urdf necesario para obtener todos su parametros-->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/> <!-- Publica el estado del robot -->
+    <node name="joint_state_publisher_kuka" pkg="joint_state_publisher" type="joint_state_publisher" /> <!-- Publica el estado de las juntas del
+													kuka -->
   </group>
+  
+  <!-- Para el kinect -->
+  <param name="robot_description" command="cat $(find knowledge)/hardware/kinect.xml" /> <!-- Descripcion del robot kinect con extension .xml
+											porque no necesito saber todos sus parametros -->
+  <node name="kuka_kinect_tf" pkg="tf" type="static_transform_publisher" args="0 2 0 4.71238 0 0 base_link base_link_kinect 100"/> <!-- Mueve
+											el modelo del kinect, con arg = metros y orientacion -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/> <!-- Publica el estado del robot kinect -->
 
-  <group ns="hardware">
+  <group ns="hardware"> <!-- kinect mannager - con la nube de puntos obtenida con el iai kinect se hace el procesamiento con openCV para poder
+			trabajar con ella -->
     <node name="kinect_man" pkg="kinect_mannager_2" type="kinect_mannager_2_node" output="screen"/>
     <node name="head_simul" pkg="head" type="head_simul_node.py" output="screen"/>
   </group>
 
-  <group ns="hri">
+  <group ns="hri"> <!-- rosrun rviz rviz abre el rviz hri human robot interface-->
     <node name="rviz" pkg="rviz" type="rviz"/>
   </group>
 
-  <group ns="vision">
+  <group ns="vision"> <!-- Levanta el nodo para el calculo del PCA -->
     <node name="obj_angle_calc" pkg="obj_angle_calc" type="obj_angle_calc_node" output="screen"/>
-  </group>
+  </group> <!--  -->
     
 </launch>
+
+
+
